@@ -31,31 +31,14 @@ jobs:
     
     - name: Radon calculates metrics like cyclomatic complexity, maintainability index from your source code
       run: |
-        radon cc hw2_debugging.py rand.py -j --json
         output=$(radon cc hw2_debugging.py rand.py -j --json)
+        echo "dflas"+$output['hw2_debugging.py'][0]['name']+"fas"
         res=$output['hw2_debugging.py'][0]['name']
         echo "dsfksf"+$res+"dfladffsfhk"
         echo "script-output=$res" >> $GITHUB_ENV
     - name: Print captured output
       run: |
         echo "Captured output: ${{ env.script-output }}"
-        
-    - name: Parse Radon Output with Python
-      run: |
-          python - <<EOF
-          import json
-          import os
-          
-          # Load JSON data from environment variable
-          data = json.loads(os.getenv('script_output'))
-          
-          # Access functions data
-          functions = data["hw2_debugging.py"]
-          
-          # Print each function's name and complexity
-          for function in functions:
-              print(f"Function name: {function['name']}, Complexity: {function['complexity']}")
-          EOF
 
     - name: Radon badge output
       uses: schneegans/dynamic-badges-action@v1.7.0

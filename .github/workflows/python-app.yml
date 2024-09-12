@@ -33,7 +33,7 @@ jobs:
       run: |
         radon cc hw2_debugging.py rand.py -j --json
         output=$(radon cc hw2_debugging.py rand.py -j --json)
-        res=$(output['hw2_debugging.py'][0]['name'])+$(output['hw2_debugging.py'][0]['rank'])+$(output['hw2_debugging.py'][0]['complexity'])
+        res=$(output['hw2_debugging.py'][0]['name'])
         echo "dsfksf"+$res+"dfladffsfhk"
         echo "script-output=$res" >> $GITHUB_ENV
     - name: Print captured output

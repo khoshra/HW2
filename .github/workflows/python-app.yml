@@ -33,6 +33,9 @@ jobs:
     - name: Radon calculates metrics like cyclomatic complexity, maintainability index from your source code
       run: |
         output=$(radon cc hw2_debugging.py rand.py -j --json)
+        echo "radon output"
+        echo $output
+
         res=$output['hw2_debugging.py'][0]['name']
 
         # Use jq to extract the name of the first function

@@ -43,8 +43,13 @@ jobs:
         echo "$output" | jq '.'
         echo "oasfan"
         # Use jq to extract the name of the first function
-        res=$(echo "$output" | jq '.["hw2_debugging.py"][0].name' + '.["hw2_debugging.py"][0].complexity')
+        #res=$(echo "$output" | jq '.["hw2_debugging.py"][0].name' + '.["hw2_debugging.py"][0].complexity')
         #res=$(echo "$output" | jq '.["hw2_debugging.py"][0] | {name, complexity}')
+        
+        name=$(echo "$output" | jq -r '.["hw2_debugging.py"][0].name')
+        complexity=$(echo "$output" | jq -r '.["hw2_debugging.py"][0].complexity')
+        # Concatenate values
+        res="${name} - Complexity: ${complexity}"
         echo "Function name: $res"
 
         echo "script-output=$res" >> $GITHUB_ENV

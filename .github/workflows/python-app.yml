@@ -36,16 +36,17 @@ jobs:
         echo "dflas"+$output['hw2_debugging.py'][0]['name']+"fas"
         res=$output['hw2_debugging.py'][0]['name']
         echo "dsfksf"+$res+"dfladffsfhk"
-        echo "script-output=$res" >> $GITHUB_ENV
-    - name: Parse script output
-      run: |
+        
         echo "Raw JSON Output:"
         echo "$output"
         echo "faul"
+        echo "$output" | jq '.'
+        echo "oasfan"
         # Use jq to extract the name of the first function
         res=$(echo "$output" | jq '.["hw2_debugging.py"][0].name')
         echo "Function name: $res"
-        
+        echo "script-output=$res" >> $GITHUB_ENV
+
     - name: Print captured output
       run: |
         echo "Captured output: ${{ env.script-output }}"

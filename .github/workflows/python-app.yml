@@ -31,9 +31,7 @@ jobs:
     
     - name: Radon calculates metrics like cyclomatic complexity, maintainability index from your source code
       run: |
-        radon cc hw2_debugging.py -j --json
-        echo "$radon_output" | jq '.["hw2_debugging.py"][] | select(.name=="recombine") | .complexity'
-        output = $(radon cc hw2_debugging.py -j --json)
+        output = $(python script.py) 
         echo "script-output=$output" >> $GITHUB_ENV
     - name: Print captured output
       run: |
@@ -44,7 +42,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 22e5aebe393b1972403ff8ac34ba415d
-        filename: test.json # Use test.svg if you want to use the SVG mode.
+        filename: test.json # Use test.svg if you want to use the SVG mode. $(radon cc hw2_debugging.py -j --json)
         label: radon | cyclomatic complexity
         message: ${{ env.script-output }}
         color: orange

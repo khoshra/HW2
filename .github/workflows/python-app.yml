@@ -33,7 +33,8 @@ jobs:
       run: |
         radon cc hw2_debugging.py rand.py -j --json
         output=$(radon cc hw2_debugging.py rand.py -j --json)
-        echo "script-output=$output["hw2_debugging.py"][1]" >> $GITHUB_ENV
+        res = $output['hw2_debugging.py'][0]['name']
+        echo "script-output=$res" >> $GITHUB_ENV
     - name: Print captured output
       run: |
         echo "Captured output: ${{ env.script-output }}"

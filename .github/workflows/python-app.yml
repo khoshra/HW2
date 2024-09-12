@@ -39,7 +39,9 @@ jobs:
     - name: Print captured output
       run: |
         echo "Captured output: ${{ env.script-output }}"
-
+    - name: Parse JSON output with jq
+      run: |
+        echo "$script_output" | jq '.["hw2_debugging.py"][] | {name, complexity}'  
     - name: Radon badge output
       uses: schneegans/dynamic-badges-action@v1.7.0
       with:

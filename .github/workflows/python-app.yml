@@ -26,8 +26,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest autopep8
+        pip install flake8 pytest autopep8 radon
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Create Awesome Badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: 22e5aebe393b1972403ff8ac34ba415d
+        filename: test.json # Use test.svg if you want to use the SVG mode.
+        label: Hello
+        message: World
+        color: orange
+
     - name: autopep8 for automatically formats python code to conform pep 8 style guide.
       run: |
         autopep8 -d --diff hw2_debugging.py

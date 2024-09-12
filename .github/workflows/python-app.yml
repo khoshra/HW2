@@ -34,7 +34,7 @@ jobs:
         which radon
         radon --version
         radon cc hw2_debugging.py -j --json
-        output = $(radon cc hw2_debugging.py -j --json)
+        output=$(radon cc hw2_debugging.py -j --json)
         echo "script-output=$output" >> $GITHUB_ENV
     - name: Print captured output
       run: |

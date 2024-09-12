@@ -28,14 +28,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest autopep8 radon
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Create Awesome Badge
+    
+    - name: Radon calculates metrics like cyclomatic complexity, maintainability index from your source code
+      run: |
+        output = $(radon cc hw2_debugging.py)
+        echo "script-output=$output" >> $GITHUB_ENV
+    - name: Print captured output
+      run: |
+      echo "Captured output: ${{ env.script-output }}"
+
+    - name: Radon badge output
       uses: schneegans/dynamic-badges-action@v1.7.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 22e5aebe393b1972403ff8ac34ba415d
         filename: test.json # Use test.svg if you want to use the SVG mode.
-        label: Hello
-        message: World
+        label: radon | cyclomatic complexity
+        message: ${{ env.script-output }}
         color: orange
 
     - name: autopep8 for automatically formats python code to conform pep 8 style guide.

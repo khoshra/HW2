@@ -31,7 +31,6 @@ jobs:
     
     - name: Radon calculates metrics like cyclomatic complexity, maintainability index from your source code
       run: |
-        echo "hello radon"
         #output = $(radon cc hw2_debugging.py)
         echo "script-output=76" >> $GITHUB_ENV
     - name: Print captured output

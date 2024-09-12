@@ -40,7 +40,7 @@ jobs:
     - name: Parse script output
       run: |
         # Use jq to extract the name of the first function
-        res=$(echo "$output" | jq -r '.["hw2_debugging.py"][0].name')
+        res=$(echo "$output" | jq '.["hw2_debugging.py"][0].name')
         echo "Function name: $res"
         
     - name: Print captured output

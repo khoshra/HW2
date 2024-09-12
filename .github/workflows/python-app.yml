@@ -34,19 +34,13 @@ jobs:
       run: |
         output=$(radon cc hw2_debugging.py rand.py -j --json)
         res=$output['hw2_debugging.py'][0]['name']
-        echo "dsfksf"+$res+"dfladffsfhk"
 
-        echo "Raw JSON Output:"
-        echo "$output"
-        echo "faul"
-        echo "$output" | jq '.'
-        echo "oasfan"
         # Use jq to extract the name of the first function
         name=$(echo "$output" | jq -r '.["hw2_debugging.py"][0].name')
         complexity=$(echo "$output" | jq -r '.["hw2_debugging.py"][0].complexity')
         # Concatenate values
         res="Function: ${name} - Complexity: ${complexity}"
-        echo "Function name: $res"
+        echo "res: $res"
         echo "script-output=$res" >> $GITHUB_ENV
 
     - name: Print captured output
